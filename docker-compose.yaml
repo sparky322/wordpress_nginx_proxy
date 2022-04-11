@@ -1,0 +1,27 @@
+version: '3'
+services:
+    wordpress1:
+        image: wordpress
+        restart: always
+        ports:
+            - 3081:80
+        environment: 
+            WORDPRESS_DB_HOST: mariadb
+            WORDPRESS_DB_USER: "$${DATABASE_USER}"
+            WORDPRESS_DB_PASSWORD: "$${DATABASE_PASSWORD}"
+            WORDPRESS_DB_NAME: "$${DATABASE_NAME}"
+        links:
+            - host.docker.internal
+    
+    wordpress2:
+        image: wordpress
+        restart: always
+        ports:
+            - 3082:80
+        environment: 
+            WORDPRESS_DB_HOST: mariadb
+            WORDPRESS_DB_USER: "$${DATABASE_USER}"
+            WORDPRESS_DB_PASSWORD: "$${DATABASE_PASSWORD}"
+            WORDPRESS_DB_NAME: "$${DATABASE_NAME}"
+        links:
+            - host.docker.internal         

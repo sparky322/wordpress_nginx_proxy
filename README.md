@@ -1,4 +1,4 @@
-# 2 wordpress containert with nginx proxy and local host database
+# 2 wordpress containers with nginx proxy and local host database
 
 Requirements:
 1. You have to install mariadb and create databases on local host via script or yourself 

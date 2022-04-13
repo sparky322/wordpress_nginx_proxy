@@ -5,23 +5,27 @@ services:
         restart: always
         ports:
             - 3081:80
-        environment: 
-            WORDPRESS_DB_HOST: mariadb
-            WORDPRESS_DB_USER: "$${DATABASE_USER}"
-            WORDPRESS_DB_PASSWORD: "$${DATABASE_PASSWORD}"
-            WORDPRESS_DB_NAME: "$${DATABASE_NAME}"
-        links:
-            - host.docker.internal
-    
+        environment:
+            WORDPRESS_DB_HOST: 172.28.0.1:3306
+            WORDPRESS_DB_USER: wordpress1
+            WORDPRESS_DB_PASSWORD: wordpress1
+            WORDPRESS_DB_NAME: wordpress1
+        networks:
+            - bunny_network
+
     wordpress2:
         image: wordpress
         restart: always
         ports:
             - 3082:80
-        environment: 
-            WORDPRESS_DB_HOST: mariadb
-            WORDPRESS_DB_USER: "$${DATABASE_USER}"
-            WORDPRESS_DB_PASSWORD: "$${DATABASE_PASSWORD}"
-            WORDPRESS_DB_NAME: "$${DATABASE_NAME}"
-        links:
-            - host.docker.internal         
+        environment:
+            WORDPRESS_DB_HOST: 172.28.0.1:3306
+            WORDPRESS_DB_USER: wordpress2
+            WORDPRESS_DB_PASSWORD: wordpress2
+            WORDPRESS_DB_NAME: wordpress2
+        networks:
+            - bunny_network
+
+networks:
+  bunny_network:
+    external: true
